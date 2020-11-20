@@ -21,9 +21,10 @@ if (!isset($gamerTag)) {
     $gamerTag = '';
 }
 
-
 $password_ = '';
 $passwordVerify = '';
+
+
 ?> 
 <!DOCTYPE html>
 <html>
@@ -37,7 +38,7 @@ $passwordVerify = '';
 
             <h1>Game Friends Login</h1>
 
-            <form action="controller.php" method="post">
+           <form action="controller.php" method="post">
                 <input type="hidden" name="action" value="login"/>
 
 
@@ -66,6 +67,7 @@ $passwordVerify = '';
                 <label>&nbsp;</label>
                 <br>
             </form>
+
 
 
             <h1></h1>

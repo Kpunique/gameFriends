@@ -3,9 +3,18 @@
  require_once('../model/database.php');
  require_once('../model/usersDB.php');
  require_once ('../model/member.php');
-//broken
- $action=filter_input(INPUT_POST,'action');
 
+ $action=filter_input(INPUT_POST,'action');
+ if ($action==NULL){
+    $action = filter_input(INPUT_GET, 'action');
+    if($action == NULL){
+        $action= 'profile';
+    }
+ }
+ if (!isset($_SESSION)) 
+ {
+    $action = 'login';
+ }
 
 switch($action)
 {
@@ -60,13 +69,31 @@ switch($action)
         
         if ($errorMessageFirst != '' || $errorMessageLast !='' ||$errorMessageUser || 
          $errorMessagePassword != ''){ 
-            include ('view/login.php'); 
+            include ('login.php'); 
             
         }
         else {  
         $member = new member($firstName, $lastName, $userName, $gamerTag, $hash, $isAdmin);
         usersDB::addMember($member);
     
+        }
+        break;
+        
+     case 'login':
+        $user_name = filter_input(INPUT_POST, 'user_name');
+        $password_ = filter_input(INPUT_POST, 'password_');
+              if (usersDB::is_valid_login($user_name, $password_))
+        {
+            $_SESSION['is_valid_login'] = true;
+            $_SESSION['user_name'] = $user_name; 
+          // $memberID = MembersDB::get_current_memberID($_SESSION['user_name']);
+          
+            //$memberBooks = booksDB::get_member_books($memberID);
+            include('view/homePage.php');
+            
+        } else{
+            $errorMessageLogin= 'Your Username and Password do not match a member on this site. Please Register and Join Us';
+            include('login.php');
         }
         break;
 }
