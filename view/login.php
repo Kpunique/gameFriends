@@ -36,7 +36,7 @@ $passwordVerify = '';
     <body>
         <main>
 
-            <h1>Game Friends Login</h1>
+            <h1>Game Friends Login Page</h1>
 
            <form action="controller.php" method="post">
                 <input type="hidden" name="action" value="login"/>
