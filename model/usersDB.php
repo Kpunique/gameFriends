@@ -67,5 +67,19 @@ class usersDB {
         return password_verify($password_, $hash);
     }
     
+    public static function viewAllUsers(){
+        
+    
+      $db = Database::getDB();
+      
+      $query = 'SELECT userID, firstName, lastName, userName , gamerTag , isAdmin FROM users';
+      $statement = $db->prepare($query);
+      $statement->execute();
+      $results =  $statement->fetchAll();
+    
+      
+    return $results[0];
+    
+    }
      
 }
