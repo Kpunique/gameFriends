@@ -160,8 +160,7 @@ switch($action)
         
          case 'viewAll':
         
-         $allMembers = usersDB::viewAllUsers();
-        
+         $allMembers = usersDB::select_all();
         include ('viewAll.php');
         break;
 }

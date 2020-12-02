@@ -3,6 +3,20 @@
 require_once('database.php');
 class usersDB {
     
+        private static function arrayToMembers($results){
+        $member = [];
+        foreach ($results as $temp){
+        $firstName = $temp['firstName'];
+        $lastName = $temp['lastName'];
+        $userName = $temp['userName'];
+        $user = new member($firstName, $lastName, $userName, "", "","");
+        $member[$user->getUserName()] = $user;
+    }
+    return $member;
+        
+    }
+
+    
       public static function addMember($member) {
         $db = Database::getDB();
 
@@ -67,19 +81,17 @@ class usersDB {
         return password_verify($password_, $hash);
     }
     
-    public static function viewAllUsers(){
-        
-    
+     public static function select_all()
+    {
       $db = Database::getDB();
       
-      $query = 'SELECT userID, firstName, lastName, userName , gamerTag , isAdmin FROM users';
+      $query = 'SELECT firstName,lastName,userName FROM users';
       $statement = $db->prepare($query);
       $statement->execute();
       $results =  $statement->fetchAll();
     
       
-    return $results[0];
-    
+      return self::arrayToMembers($results);
     }
      
 }
