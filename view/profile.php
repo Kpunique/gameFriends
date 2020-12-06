@@ -10,8 +10,11 @@
         <main>
             <div id="data">
                 <h1> Welcome Home Gamer </h1>
-
-
+              <form action="controller.php" method="POST" >
+                <input type="hidden" name="action" value="updateApex">
+                <input type="submit" value="Update Apex Kills">
+            </form>
+          
                 <h2> People You Follow</h2>
                
                 

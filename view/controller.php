@@ -163,6 +163,8 @@ switch($action)
          $allMembers = usersDB::select_all();
         include ('viewAll.php');
         break;
+     case 'updateApex':
+        break;
 }
 
 
