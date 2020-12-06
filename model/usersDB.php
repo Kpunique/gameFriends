@@ -6,10 +6,12 @@ class usersDB {
         private static function arrayToMembers($results){
         $member = [];
         foreach ($results as $temp){
+        $userID = $temp['userID'];    
         $firstName = $temp['firstName'];
         $lastName = $temp['lastName'];
         $userName = $temp['userName'];
-        $user = new member($firstName, $lastName, $userName, "", "","");
+        $gamerTag = $temp['gamerTag'];
+        $user = new member($firstName, $lastName, $userName, $gamerTag, $userID,"");
         $member[$user->getUserName()] = $user;
     }
     return $member;
@@ -85,7 +87,7 @@ class usersDB {
     {
       $db = Database::getDB();
       
-      $query = 'SELECT firstName,lastName,userName FROM users';
+      $query = 'SELECT userID,firstName,lastName,userName,gamerTag FROM users';
       $statement = $db->prepare($query);
       $statement->execute();
       $results =  $statement->fetchAll();
