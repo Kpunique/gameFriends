@@ -147,7 +147,7 @@ switch($action)
         {
             $_SESSION['is_valid_login'] = true;
             $_SESSION['user_name'] = $user_name; 
-          // $memberID = MembersDB::get_current_memberID($_SESSION['user_name']);
+            $userID = usersDB::get_current_userID($_SESSION['user_name']);
           
             //$memberBooks = booksDB::get_member_books($memberID);
             include('profile.php');
@@ -163,7 +163,20 @@ switch($action)
          $allMembers = usersDB::select_all();
         include ('viewAll.php');
         break;
+    
      case 'updateApex':
+        break;
+    
+    case 'updateFortnite':
+        break;
+    
+    case 'profilePage':
+        $_SESSION['user_name'] = $user_name;
+        $userID = UsersDB::get_current_userID($_SESSION['user_name']);
+        break;
+    
+    case 'adminPage':
+        $_SESSION['user_name'] = $user_name;
         break;
 }
 

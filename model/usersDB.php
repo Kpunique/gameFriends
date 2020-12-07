@@ -95,5 +95,21 @@ class usersDB {
       
       return self::arrayToMembers($results);
     }
+    
+      public static function get_current_userID($user_name) {
+        $db = Database::getDB();
+
+        $query = 'SELECT userID FROM users '
+                . 'WHERE userName = :userName';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':userName', $user_name);
+        $statement->execute();
+        $data = $statement->fetch(); 
+        $statement->closeCursor();
+        $userData = $data[0];
+        
+        
+        return $userData;
+    }
      
 }
