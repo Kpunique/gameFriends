@@ -172,11 +172,12 @@ switch($action)
     
     case 'profilePage':
         $_SESSION['user_name'] = $user_name;
-        $userID = UsersDB::get_current_userID($_SESSION['user_name']);
+        $userID = usersDB::get_current_userID($_SESSION['user_name']);
         break;
     
     case 'adminPage':
         $_SESSION['user_name'] = $user_name;
+        
         break;
 }
 
