@@ -161,23 +161,29 @@ switch($action)
          case 'viewAll':
         
          $allMembers = usersDB::select_all();
-        include ('viewAll.php');
-        break;
+         include ('viewAll.php');
+          break;
     
      case 'updateApex':
+         $user_name = ($_SESSION['user_name']);
+         include ('enterApexInfo.php');
         break;
     
-    case 'updateFortnite':
+     case 'updateFortnite':
         break;
     
-    case 'profilePage':
+     case 'profilePage':
         $_SESSION['user_name'] = $user_name;
         $userID = usersDB::get_current_userID($_SESSION['user_name']);
         break;
     
-    case 'adminPage':
+     case 'adminPage':
         $_SESSION['user_name'] = $user_name;
         
+        break;
+    case 'logout': 
+        $_SESSION = array();
+        include('view/login.php');
         break;
 }
 

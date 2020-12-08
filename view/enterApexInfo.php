@@ -24,7 +24,8 @@ if (!isset($apexKills)) {
                 <div id="data">
 
                     <label>UserName:</label>
-                    
+                    <input type="text" name="user_name"
+                    value="<?php echo htmlspecialchars($user_name); ?>"> &nbsp;       
 
                     <label>Kills:</label>
                     <input type="text" name="ratingB" 
