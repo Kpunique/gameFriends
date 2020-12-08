@@ -3,6 +3,7 @@
  require_once('../model/database.php');
  require_once('../model/usersDB.php');
  require_once ('../model/member.php');
+ require_once('../model/apex.php');
 
  $action=filter_input(INPUT_POST,'action');
  if ($action==NULL){
@@ -166,6 +167,10 @@ switch($action)
     
      case 'updateApex':
          $user_name = ($_SESSION['user_name']);
+         $userID = usersDB::get_current_userID($_SESSION['user_name']);
+         $apexKills = filter_input(INPUT_POST, 'apexKills');
+         $gamer_tag = filter_input(INPUT_POST, 'gamer_tag');
+         $apex = new apex($userID, $user_name, $gamer_tag, $apexKills);
          include ('enterApexInfo.php');
         break;
     
