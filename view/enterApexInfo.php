@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <?php
 //include('navigation.php');
-if (!isset($apexKills)) {
-    $apexKills = '';
+if (!isset($kills)) {
+    $kills = '0';
 }
-
+if (!isset($gamer_tag)){
+    $gamer_tag = '';
+}
 
 ?>
 <html>
@@ -23,17 +25,15 @@ if (!isset($apexKills)) {
 
                 <div id="data">
 
-                    <label>UserName:</label>
-                    <input type="text" name="user_name"
-                    value="<?php echo htmlspecialchars($user_name); ?>"> &nbsp;  
+                     
                     
                     <label>GamerTag:</label>
                     <input type="text" name="gamer_tag"
                     value="<?php echo htmlspecialchars($gamer_tag); ?>"> &nbsp; 
 
                     <label>Kills:</label>
-                    <input type="text" name="ratingB" 
-                           value="<?php echo htmlspecialchars($apexKills); ?>"> &nbsp; 
+                    <input type="text" name="kills" 
+                           value="<?php echo htmlspecialchars($kills); ?>"> &nbsp; 
                     <?php if (!empty($errorKills)) { ?> <span class="error"><?php echo htmlspecialchars($errorKills); ?></span> <?php } ?>
                     <br>   
                 </div>

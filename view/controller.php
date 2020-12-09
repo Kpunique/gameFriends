@@ -4,6 +4,7 @@
  require_once('../model/usersDB.php');
  require_once ('../model/member.php');
  require_once('../model/apex.php');
+ require_once('../model/apexDB.php');
 
  $action=filter_input(INPUT_POST,'action');
  if ($action==NULL){
@@ -165,14 +166,33 @@ switch($action)
          include ('viewAll.php');
           break;
     
-     case 'updateApex':
+     case 'addApex':
          $user_name = ($_SESSION['user_name']);
          $userID = usersDB::get_current_userID($_SESSION['user_name']);
-         $apexKills = filter_input(INPUT_POST, 'apexKills');
+         $kills = filter_input(INPUT_POST, 'kills');
          $gamer_tag = filter_input(INPUT_POST, 'gamer_tag');
-         $apex = new apex($userID, $user_name, $gamer_tag, $apexKills);
+         $apex = new apex($userID, $user_name, $gamer_tag, $kills);
+         apexDB::addApex($apex);
          include ('enterApexInfo.php');
         break;
+    case 'updateApex':
+         $user_name = ($_SESSION['user_name']);
+         $userID = usersDB::get_current_userID($_SESSION['user_name']);
+         $kills = filter_input(INPUT_POST, 'kills');
+         $gamer_tag = filter_input(INPUT_POST, 'gamer_tag');
+         apexDB::update_info($user_name,$kills);
+         include ('enterApexInfo.php');
+        break;
+     case 'addFortnite':
+         $user_name = ($_SESSION['user_name']);
+         $userID = usersDB::get_current_userID($_SESSION['user_name']);
+         $kills = filter_input(INPUT_POST, 'kills');
+         $gamer_tag = filter_input(INPUT_POST, 'gamer_tag');
+         $fortnite= new fortnite($userID, $user_name, $gamer_tag, $kills);
+         fortniteDB::addFortnite($fortnite);
+         include ('enterFortniteInfo.php');
+        break;
+    
     
      case 'updateFortnite':
         break;
