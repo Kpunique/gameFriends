@@ -111,5 +111,19 @@ class usersDB {
         
         return $userData;
     }
-     
+        public static function get_current_adminStatus($user_name) {
+        $db = Database::getDB();
+
+        $query = 'SELECT isAdmin FROM users '
+                . 'WHERE userName = :userName';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':userName', $user_name);
+        $statement->execute();
+        $data = $statement->fetch(); 
+        $statement->closeCursor();
+        $userData = $data[0];
+        
+        
+        return $userData;
+    }
 }

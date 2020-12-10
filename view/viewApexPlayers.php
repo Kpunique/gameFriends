@@ -12,25 +12,22 @@
     
     <body>
         <main>
-        <h1>USers on this site</h1>
+        <h1>Apex Friends you can play with</h1>
         <table>
             <tr>
-             <th>User ID</th>
-            <th> First Name </th>
-            <th>Last Name</th>
             <th>User Name</th>
             <th>Gamer Tag</th>
+            <th>kills</th>
             </tr>
             
-            <?php foreach ($allMembers as $member): ?>
+            <?php foreach ($gameApex as $apex): ?>
             
             <tr>
                 
-                <td><?php echo htmlspecialchars($member->getFirstName()); ?></td>
-                <td> <?php echo htmlspecialchars ($member->getLastName()); ?> </td>
-                <td> <?php echo htmlspecialchars ($member->getUserName()); ?> </td>
-                <td><?php echo htmlspecialchars($member->getGamerTag()); ?></td>
-            
+                <td> <?php echo htmlspecialchars ($apex->getUserName()); ?> </td>
+                <td><?php echo htmlspecialchars($apex->getGamerTag()); ?></td>
+               <td><?php echo htmlspecialchars($apex->getKIlls()); ?></td>
+               <td><a href="controller.php?action=visit_profile&username=<?php echo htmlspecialchars ($user->getUserName()); ?>">visit</a></td> 
             <?php  endforeach;?>
                  </tr>
             

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <?php
 //include('navigation.php');
-if (!isset($fortniteKills)) {
-    $fortniteKills = '';
+if (!isset($kills)) {
+    $kills = '0';
 }
-
+if (!isset($gamer_tag)){
+    $gamer_tag = '';
+}
 
 ?>
 <html>
@@ -16,22 +18,33 @@ if (!isset($fortniteKills)) {
 
     <body>
         <main>
-            <h1>UPDATE FORTNITE KILLS</h1>
+            <h1>UPDATE APEX KILLS</h1>
             <form action="controller.php" method="post">
-                <input type="hidden" name="action" value="updateApex"/>
+                <input type="hidden" name="action" value="updateFortnite"/>
 
 
                 <div id="data">
 
-                    <label>UserName:</label>
+                     
                     
+                    <label>GamerTag:</label>
+                    <input type="text" name="gamer_tag"
+                    value="<?php echo htmlspecialchars($gamer_tag); ?>"> &nbsp; 
 
                     <label>Kills:</label>
-                    <input type="text" name="fortniteKills" 
-                           value="<?php echo htmlspecialchars($fortniteKills); ?>"> &nbsp; 
+                    <input type="text" name="kills" 
+                           value="<?php echo htmlspecialchars($kills); ?>"> &nbsp; 
                     <?php if (!empty($errorKills)) { ?> <span class="error"><?php echo htmlspecialchars($errorKills); ?></span> <?php } ?>
                     <br>   
                 </div>
+                
+                 <div id ="buttons">
+
+                    <input type="submit" value="Add">
+                    <input type="hidden" name ="action" value="addFortnite"/><br>
+                </div>
+                <label>&nbsp;</label>
+                <br> 
 
                     <div id ="buttons">
 

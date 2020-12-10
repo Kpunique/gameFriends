@@ -5,6 +5,8 @@
  require_once ('../model/member.php');
  require_once('../model/apex.php');
  require_once('../model/apexDB.php');
+  require_once('../model/fortnite.php');
+ require_once('../model/fortniteDB.php');
 
  $action=filter_input(INPUT_POST,'action');
  if ($action==NULL){
@@ -183,29 +185,40 @@ switch($action)
          apexDB::update_info($user_name,$kills);
          include ('enterApexInfo.php');
         break;
-     case 'addFortnite':
-         $user_name = ($_SESSION['user_name']);
-         $userID = usersDB::get_current_userID($_SESSION['user_name']);
-         $kills = filter_input(INPUT_POST, 'kills');
-         $gamer_tag = filter_input(INPUT_POST, 'gamer_tag');
-         $fortnite= new fortnite($userID, $user_name, $gamer_tag, $kills);
-         fortniteDB::addFortnite($fortnite);
-         include ('enterFortniteInfo.php');
-        break;
-    
-    
-     case 'updateFortnite':
-        break;
     
      case 'profilePage':
-        $_SESSION['user_name'] = $user_name;
-        $userID = usersDB::get_current_userID($_SESSION['user_name']);
+       if (isset($_SESSION['user_name']))  {
+        $user = usersDB::get_current_user_data($_SESSION['user_name']);
+        include('view/profile.php');
         break;
-    
+      } else {
+        include('login.php');
+        break;
+      }
      case 'adminPage':
         $_SESSION['user_name'] = $user_name;
+        $userID = usersDB::get_current_userID($_SESSION['user_name']);
+        $adminStatus = usersDB::get_current_adminStatus($_SESSION['user_name']);
+        if ($adminStatus == 1){
+            include('adminPage.php');
+        } else {
+        include('notAdmin.php');}
         
         break;
+        
+    case'visit_profile':
+        $user_name = filter_input(INPUT_GET, 'username');
+        
+        $viewed_user = membersDB::get_current_user_data($user_name);
+        
+        
+    case 'addFriend':
+        $user_name = filter_input(INPUT_GET, 'username');
+        $viewed_user = membersDB::get_current_user_data($user_name);
+        break;
+        
+        
+        
     case 'logout': 
         $_SESSION = array();
         include('view/login.php');
