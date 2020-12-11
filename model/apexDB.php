@@ -23,7 +23,8 @@ class apexDB {
         $statement->execute();
         $statement->closeCursor();
     }
-          private static function arrayToApex($results){
+    
+    private static function arrayToApex($results){
         $apex = [];
         foreach ($results as $temp){
         $userID = $temp['userID'];    
@@ -36,6 +37,7 @@ class apexDB {
     return $apex;
         
     }
+    
    public static function update_info($userName, $kills) {
         $db = Database::getDB();
         $query = 'UPDATE apex ' . 

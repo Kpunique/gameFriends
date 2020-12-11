@@ -188,8 +188,8 @@ switch($action)
     
      case 'profilePage':
        if (isset($_SESSION['user_name']))  {
-        $user = usersDB::get_current_user_data($_SESSION['user_name']);
-        include('view/profile.php');
+        $user = usersDB::get_current_userID($_SESSION['user_name']);
+        include('profile.php');
         break;
       } else {
         include('login.php');

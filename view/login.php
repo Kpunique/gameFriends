@@ -35,13 +35,12 @@ $passwordVerify = '';
     </head>
     <body>
         <main>
-
-            <h1>Game Friends Login Page</h1>
+          <div id="apexFriends">
 
            <form action="controller.php" method="post">
                 <input type="hidden" name="action" value="login"/>
 
-
+               <h1>Game Friends Login Page</h1>
 
                 <div id="data">
 
@@ -119,7 +118,7 @@ $passwordVerify = '';
                 <label>&nbsp;</label>
                 <br>
             </form>
-
+          </div>
         </main>
     </body>
 </html>

@@ -41,7 +41,8 @@ br {
     font-weight: bold;
 }
 #apexFriends {
-   
+    color: yellow;
+    font-weight: bold;
     background-image: url("images/friendsPic.jpg");
 }
 #apexMain {
