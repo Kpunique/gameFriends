@@ -26,12 +26,11 @@ class apexDB {
     
     private static function arrayToApex($results){
         $apex = [];
-        foreach ($results as $temp){
-        $userID = $temp['userID'];    
+        foreach ($results as $temp){    
         $userName = $temp['userName'];
         $gamerTag = $temp['gamerTag'];
         $kills = $temp['kills'];
-        $reader = new apex( $userName, $gamerTag, $userID, $kills);
+        $reader = new apex( $userName, $gamerTag, $kills, "");
         $apex [$reader->getUserName()] = $reader;
     }
     return $apex;

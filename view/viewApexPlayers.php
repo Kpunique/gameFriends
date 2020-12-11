@@ -27,7 +27,8 @@
                 <td> <?php echo htmlspecialchars ($apex->getUserName()); ?> </td>
                 <td><?php echo htmlspecialchars($apex->getGamerTag()); ?></td>
                <td><?php echo htmlspecialchars($apex->getKIlls()); ?></td>
-               <td><a href="controller.php?action=visit_profile&username=<?php echo htmlspecialchars ($user->getUserName()); ?>">visit</a></td> 
+               
+            <td><a href="controller.php?action=visit_profile&username=<?php echo htmlspecialchars ($apex->getUserName()); ?>">visit</a></td>
             <?php  endforeach;?>
                  </tr>
             

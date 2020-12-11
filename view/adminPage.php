@@ -17,7 +17,7 @@
                 <input type="submit" value="View All Users">
             </form>
 
-                <h2> People You Follow</h2>
+                
                
                 
         </main> 
