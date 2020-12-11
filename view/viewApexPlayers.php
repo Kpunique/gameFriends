@@ -20,7 +20,7 @@
             <th>kills</th>
             </tr>
             
-            <?php foreach ($gameApex as $apex): ?>
+            <?php foreach ($findFriends as $apex): ?>
             
             <tr>
                 

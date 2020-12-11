@@ -23,7 +23,19 @@ class apexDB {
         $statement->execute();
         $statement->closeCursor();
     }
+          private static function arrayToApex($results){
+        $apex = [];
+        foreach ($results as $temp){
+        $userID = $temp['userID'];    
+        $userName = $temp['userName'];
+        $gamerTag = $temp['gamerTag'];
+        $kills = $temp['kills'];
+        $reader = new apex( $userName, $gamerTag, $userID, $kills);
+        $apex [$reader->getUserName()] = $reader;
+    }
+    return $apex;
         
+    }
    public static function update_info($userName, $kills) {
         $db = Database::getDB();
         $query = 'UPDATE apex ' . 
@@ -34,6 +46,19 @@ class apexDB {
         $statement->bindValue(':kills', $kills);
         $statement->execute();
         $statement->closeCursor();
+    }
+    
+     public static function select_all()
+    {
+      $db = Database::getDB();
+      
+      $query = 'SELECT userName,gamerTag,kills FROM apex';
+      $statement = $db->prepare($query);
+      $statement->execute();
+      $results =  $statement->fetchAll();
+    
+      
+      return self::arrayToApex($results);
     }
 
 }

@@ -27,18 +27,20 @@ class usersDB {
         $userName = $member->getUserName();
         $gamerTag = $member->getGamerTag();
         $password = $member->getPassword();
+        $isAdmin = $member->getisAdmin();
        
 
         $query = 'INSERT INTO users
-                 (firstName, lastName, userName, gamerTag, password)
+                 (firstName, lastName, userName, gamerTag, password, isAdmin)
               VALUES
-                 (:firstName, :lastName, :userName, :gamerTag,:password)';
+                 (:firstName, :lastName, :userName, :gamerTag,:password, :isAdmin)';
         $statement = $db->prepare($query);
         $statement->bindValue(':firstName', $firstName);
         $statement->bindValue(':lastName', $lastName);
         $statement->bindValue(':userName', $userName);
         $statement->bindValue(':gamerTag', $gamerTag);
         $statement->bindValue(':password', $password);
+         $statement->bindValue(':isAdmin', $isAdmin);
         $statement->execute();
         $statement->closeCursor();
     } 

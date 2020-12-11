@@ -12,19 +12,20 @@ if (!isset($gamer_tag)){
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="stylesheet" type="text/css" href="../main.css">
         <title>APEX</title>
     </head>
 
     <body>
         <main>
-            <h1>UPDATE APEX KILLS</h1>
+            
+            
             <form action="controller.php" method="post">
                 <input type="hidden" name="action" value="updateApex"/>
-
+        <div id="apexMain">
 
                 <div id="data">
-
+                <h1>UPDATE APEX KILLS</h1>
                      
                     
                     <label>GamerTag:</label>
@@ -52,7 +53,9 @@ if (!isset($gamer_tag)){
                 </div>
                 <label>&nbsp;</label>
                 <br>  
+                </div>
             </form>
+            
         </main>
     </body>
 </html>

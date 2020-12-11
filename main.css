@@ -11,6 +11,8 @@ main {
     background: white;
     border: 2px solid purple;
 }
+
+
 h1 {
     margin-top: 0;
     color: greenyellow;
@@ -26,6 +28,7 @@ label {
     width: 15em;
     margin-bottom: .5em;
 }
+
 #buttons input {
     float: left;
     margin-bottom: .5em;
@@ -36,4 +39,12 @@ br {
 .error {
     color: red;
     font-weight: bold;
+}
+#apexFriends {
+   
+    background-image: url("images/friendsPic.jpg");
+}
+#apexMain {
+   
+    background-image: url("images/apexMain.jpg");
 }

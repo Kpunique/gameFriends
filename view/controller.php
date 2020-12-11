@@ -195,6 +195,12 @@ switch($action)
         include('login.php');
         break;
       }
+      
+     case 'find_friends':
+        $findFriends = apexDB::select_all();
+         include ('viewApexPlayers.php');
+        break;
+    
      case 'adminPage':
         $_SESSION['user_name'] = $user_name;
         $userID = usersDB::get_current_userID($_SESSION['user_name']);
@@ -205,6 +211,8 @@ switch($action)
         include('notAdmin.php');}
         
         break;
+       
+    
         
     case'visit_profile':
         $user_name = filter_input(INPUT_GET, 'username');
