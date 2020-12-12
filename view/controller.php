@@ -78,7 +78,7 @@ switch($action)
         else {  
         $member = new member($firstName, $lastName, $userName, $gamerTag, $hash, $isAdmin);
         usersDB::addMember($member);
-    
+        include ('registrationConfirmation.php');
         }
         break;
         

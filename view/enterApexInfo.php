@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-//include('navigation.php');
+include('navigation.php');
 if (!isset($kills)) {
     $kills = '0';
 }
