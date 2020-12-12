@@ -7,16 +7,16 @@
  */
 
 /**
- * Description of fortnite
+ * Description of apex
  *
  * @author kpuni
  */
-class fortnite {
-     public function fortnite($userID, $userName, $gamerTag, $kills){
+class following {
+   public function following($userID, $userName, $followUserName){
        $this->userID = $userID;
        $this->userName = $userName;
-       $this->gamerTag = $gamerTag;
-       $this->kills = $kills;
+       $this->followUserName = $followUserName;
+       
    }
    
    public function getUserID(){
@@ -25,11 +25,9 @@ class fortnite {
     public function getUserName(){
         return $this->userName;
     }
-    public function getGamerTag(){
-        return $this->gamerTag;
-    }
-    public function getKills(){
-        return $this->kills;
+   
+    public function getFollowUserName(){
+        return $this->followUserName;
     }
      public function setUSerID($userID) {
         $this->userID = $userID;
@@ -37,10 +35,8 @@ class fortnite {
      public function setUserName($userName) {
         $this->userName = $userName;
     }
-     public function setGamerTag($gamerTag) {
-        $this->gamerTag = $gamerTag;
-    }
-     public function setKills($kills) {
-        $this->kills = $kills;
+   
+     public function setFollowUserName($followUserName) {
+        $this->followUserName = $followUserName;
     }
 }

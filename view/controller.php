@@ -5,8 +5,7 @@
  require_once ('../model/member.php');
  require_once('../model/apex.php');
  require_once('../model/apexDB.php');
-  require_once('../model/fortnite.php');
- require_once('../model/fortniteDB.php');
+ 
 
  $action=filter_input(INPUT_POST,'action');
  if ($action==NULL){
@@ -162,21 +161,23 @@ switch($action)
         }
         break;
         
-         case 'viewAll':
-        
-         $allMembers = usersDB::select_all();
-         include ('viewAll.php');
-          break;
-    
-     case 'addApex':
+        case 'addApex':
          $user_name = ($_SESSION['user_name']);
          $userID = usersDB::get_current_userID($_SESSION['user_name']);
          $kills = filter_input(INPUT_POST, 'kills');
          $gamer_tag = filter_input(INPUT_POST, 'gamer_tag');
          $apex = new apex($userID, $user_name, $gamer_tag, $kills);
          apexDB::addApex($apex);
-         include ('enterApexInfo.php');
+         include ('apexConfirm.php');
         break;
+        
+         case 'viewAll':
+        
+         $allMembers = usersDB::select_all();
+         include ('viewAll.php');
+          break;
+    
+       
     case 'updateApex':
          $user_name = ($_SESSION['user_name']);
          $userID = usersDB::get_current_userID($_SESSION['user_name']);
@@ -220,9 +221,10 @@ switch($action)
         $viewed_user = membersDB::get_current_user_data($user_name);
         
         
-    case 'addFriend':
-        $user_name = filter_input(INPUT_GET, 'username');
-        $viewed_user = membersDB::get_current_user_data($user_name);
+    case 'follow':
+        $userID = usersDB::get_current_userID($_SESSION['user_name']);
+        $follow = filter_input(INPUT_GET, 'username');
+        followingDB::add($userID, $_SESSION['user_name'], $follow);
         break;
         
         

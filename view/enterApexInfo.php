@@ -38,21 +38,24 @@ if (!isset($gamer_tag)){
                     <?php if (!empty($errorKills)) { ?> <span class="error"><?php echo htmlspecialchars($errorKills); ?></span> <?php } ?>
                     <br>   
                 </div>
+                
+
                    <div id ="buttons">
 
-                    <input type="submit" value="Add">
+                    <input type="submit" value="Add Apex">
                     <input type="hidden" name ="action" value="addApex"/><br>
+
                 </div>
                 <label>&nbsp;</label>
                 <br>  
-
                     <div id ="buttons">
 
                     <input type="submit" value="Update">
                     <input type="hidden" name ="action" value="updateApex"/><br>
+
                 </div>
                 <label>&nbsp;</label>
-                <br>  
+                <br> 
                 </div>
             </form>
             
