@@ -21,7 +21,7 @@
                 <span> <?php echo htmlspecialchars($member->getUserName()); ?> </span><br>
 
                 <label> Email Address:</label>
-                <span> <?php echo htmlspecialchars($member->getEmail()); ?> </span><br>
+                
                 You can now <a href="controller.php"> login </a>
                 </main> 
     </body>

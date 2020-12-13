@@ -12,31 +12,31 @@
  * @author kpuni
  */
 class following {
-   public function following($userID, $userName, $followUserName){
-       $this->userID = $userID;
-       $this->userName = $userName;
-       $this->followUserName = $followUserName;
+   public function following($followID, $follower, $following){
+       $this->followID = $followID;
+       $this->follower = $follower;
+       $this->following = $following;
        
    }
    
-   public function getUserID(){
-        return $this->userID;
+   public function getFollowID(){
+        return $this->followID;
     }
-    public function getUserName(){
-        return $this->userName;
-    }
-   
-    public function getFollowUserName(){
-        return $this->followUserName;
-    }
-     public function setUSerID($userID) {
-        $this->userID = $userID;
-    }
-     public function setUserName($userName) {
-        $this->userName = $userName;
+    public function getFollower(){
+        return $this->follower;
     }
    
-     public function setFollowUserName($followUserName) {
-        $this->followUserName = $followUserName;
+    public function getFollowing(){
+        return $this->following;
+    }
+     public function setFollowID($followID) {
+        $this->followID = $followID;
+    }
+     public function setFollower($follower) {
+        $this->follower = $follower;
+    }
+   
+     public function setFollowing($following) {
+        $this->following = $following;
     }
 }

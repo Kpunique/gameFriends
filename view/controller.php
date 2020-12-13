@@ -5,6 +5,7 @@
  require_once ('../model/member.php');
  require_once('../model/apex.php');
  require_once('../model/apexDB.php');
+ require_once('../model/followingDB.php');
  
 
  $action=filter_input(INPUT_POST,'action');
@@ -161,11 +162,11 @@ switch($action)
         }
         break;
         
-        case 'addApex':
+    case 'addApex':
          $user_name = ($_SESSION['user_name']);
-         $userID = usersDB::get_current_userID($_SESSION['user_name']);
+         $userID = usersDB::get_current_userID($user_name);
          $kills = filter_input(INPUT_POST, 'kills');
-         $gamer_tag = filter_input(INPUT_POST, 'gamer_tag');
+         $gamer_tag = usersDB::get_current_gamerTag($user_name);
          $apex = new apex($userID, $user_name, $gamer_tag, $kills);
          apexDB::addApex($apex);
          include ('apexConfirm.php');
@@ -198,7 +199,7 @@ switch($action)
       }
       
      case 'find_friends':
-        $findFriends = apexDB::select_all();
+        $apexGamers = apexDB::select_all();
          include ('viewApexPlayers.php');
         break;
     
@@ -224,14 +225,14 @@ switch($action)
     case 'follow':
         $userID = usersDB::get_current_userID($_SESSION['user_name']);
         $follow = filter_input(INPUT_GET, 'username');
-        followingDB::add($userID, $_SESSION['user_name'], $follow);
+        followingDB::addFollow($userID, $_SESSION['user_name'], $follow);
         break;
         
         
         
     case 'logout': 
         $_SESSION = array();
-        include('view/login.php');
+        include('login.php');
         break;
 }
 

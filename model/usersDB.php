@@ -113,6 +113,22 @@ class usersDB {
         
         return $userData;
     }
+    
+     public static function get_current_gamerTag($user_name) {
+        $db = Database::getDB();
+
+        $query = 'SELECT gamerTag FROM users '
+                . 'WHERE userName = :userName';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':userName', $user_name);
+        $statement->execute();
+        $data = $statement->fetch(); 
+        $statement->closeCursor();
+        $userData = $data[0];
+        
+        
+        return $userData;
+    }
         public static function get_current_adminStatus($user_name) {
         $db = Database::getDB();
 

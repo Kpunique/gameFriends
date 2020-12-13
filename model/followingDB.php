@@ -2,23 +2,18 @@
 
 require_once('database.php');
 class followingDB {
-    public static function addFollow($following) {
+    
+    public static function addFollow($followID, $follower, $following) {
         $db = Database::getDB();
 
-        $userID = $following->getUserID();
-        $userName = $following->getUserName();
-        $followUserName = $following>getFollowUserName();
-       
-       
-
         $query = 'INSERT INTO following
-                 (userID, userName, followUserName)
+                 (followID, follower, following)
               VALUES
-                 (:userID, :userName, :followUserName)';
+                 (:followID, :follower, :following)';
         $statement = $db->prepare($query);
-        $statement->bindValue(':userID', $userID);
-        $statement->bindValue(':userName', $userName);
-        $statement->bindValue(':followUserName', $followUserName);
+        $statement->bindValue(':followID', $followID);
+        $statement->bindValue(':follower', $follower);
+        $statement->bindValue(':following', $following);
         $statement->execute();
         $statement->closeCursor();
     }
