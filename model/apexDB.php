@@ -30,7 +30,7 @@ class apexDB {
         $userName = $temp['userName'];
         $gamerTag = $temp['gamerTag'];
         $kills = $temp['kills'];
-        $reader = new apex( $userName, $gamerTag, $kills, "");
+        $reader = new apex( $userName, $gamerTag, $kills, "","");
         $apex [$reader->getUserName()] = $reader;
     }
     return $apex;
@@ -53,10 +53,40 @@ class apexDB {
     {
       $db = Database::getDB();
       
-      $query = 'SELECT userName,gamerTag,kills FROM apex';
+      $query = 'SELECT * FROM apex';
       $statement = $db->prepare($query);
       $statement->execute();
       $results =  $statement->fetchAll();
+    
+      
+      return self::arrayToApex($results);
+    }
+    
+     public static function get_current_user_kills($user_name) {
+        $db = Database::getDB();
+
+        $query = 'SELECT kills FROM apex '
+                . 'WHERE username = :username';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':username', $user_name);
+        $statement->execute();
+        $data = $statement->fetch(); 
+        $statement->closeCursor();
+        
+        
+        return $data;
+    }
+    
+    
+    public static function get_current_apex_users($userKills) {
+        $db = Database::getDB();
+
+        $query = 'SELECT * FROM apex '
+                . 'WHERE kills <= :userKills + 100';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':userKills', $userKills);
+        $statement->execute();
+        $results =  $statement->fetchAll();
     
       
       return self::arrayToApex($results);

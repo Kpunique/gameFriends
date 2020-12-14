@@ -16,7 +16,7 @@
         <table>
             <tr>
      
-            <th> user name</th>
+            
             <th> gamer tag</th>
             <th> kills </th>
             </tr>
@@ -29,7 +29,7 @@
                 <td> <?php echo htmlspecialchars ($apex->getUserName()); ?> </td>
                 <td> <?php echo htmlspecialchars ($apex->getGamerTag()); ?> </td>
                 <td><?php echo htmlspecialchars($apex->getKills()); ?></td>
-            <td><a href="controller.php?action=follow&userName=<?php echo htmlspecialchars ($apex->getUserName()); ?>">visit</a></td>
+            <td><a href="controller.php?action=follow&userName=<?php echo htmlspecialchars ($apex->getUserName()); ?>">Follow</a></td>
             <?php  endforeach;?>
                  </tr>
             

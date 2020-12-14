@@ -201,7 +201,10 @@ switch($action)
       }
       
      case 'find_friends':
-        $apexGamers = apexDB::select_all();
+       $user_name = ($_SESSION['user_name']);
+        $userKills = apexDB::get_current_user_kills($user_name);
+        //$apexGamers = apexDB::select_all();
+        $apexGamers = apexDB::get_current_apex_users($userKills);
          include ('viewApexPlayers.php');
         break;
     
@@ -244,7 +247,7 @@ switch($action)
         $comment_error = '';
         $user_name = filter_input(INPUT_GET, 'username');
         
-        $viewed_user = membersDB::get_current_user_data($user_name);
+        $viewed_user = usersDB::get_current_user_data($user_name);
         
         $comments = CommentDB::select_user_comments($viewed_user['username']);
           
