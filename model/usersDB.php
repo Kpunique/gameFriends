@@ -146,4 +146,19 @@ class usersDB {
         
         return $userData;
     }
+    
+    public static function get_current_user_data($gamerTag) {
+        $db = Database::getDB();
+
+        $query = 'SELECT firstName, lastName, userName FROM users '
+                . 'WHERE gamerTag = :gamerTag';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':gamerTag', $gamerTag);
+        $statement->execute();
+        $data = $statement->fetch(); 
+        $statement->closeCursor();
+        
+        
+        return $data;
+    }
 }

@@ -218,11 +218,17 @@ switch($action)
        
     
         
-    case'visit_profile':
-        $user_name = filter_input(INPUT_GET, 'username');
+    case 'visit_profile':
+    
+        $comment_error = '';
+        $gamerTag = filter_input(INPUT_GET, 'gamerTag');
         
-        $viewed_user = membersDB::get_current_user_data($user_name);
+        $viewed_user = usersDB::get_current_user_data($gamerTag);
         
+        //$comments = CommentDB::select_user_comments($viewed_user['username']);
+          
+        include('view_user.php');
+        break;
         
     case 'follow':
         $follower = ($_SESSION['user_name']);
@@ -232,8 +238,46 @@ switch($action)
     
         followingDB::addFollow($follow);
         break;
+    
+     case 'visit_profile':
+    
+        $comment_error = '';
+        $user_name = filter_input(INPUT_GET, 'username');
         
+        $viewed_user = membersDB::get_current_user_data($user_name);
         
+        $comments = CommentDB::select_user_comments($viewed_user['username']);
+          
+        include('view/view_user.php');
+        break;
+        
+      case 'comment':
+        $IllegalCharacters = '/[<>:"\'\/\\\\|?*]/';
+        
+        $comment = filter_input(INPUT_POST, 'user_comment');
+        $user_name = filter_input(INPUT_POST, 'viewed_user');
+        $comment_error = '';
+        
+        if(preg_match($IllegalCharacters, $comment) === 1){
+            $comment_error = 'Comment contains illegal special characters' ;
+        }
+        if(strlen($comment) > 300 || strlen($comment) <= 0) {
+            $comment_error = 'Your comment must be between 1 and 300 characters';
+        }
+        
+        // if an error message exists, go to the index page
+        if ($comment_error !== '') {
+            $viewed_user = membersDB::get_current_user_data($user_name);
+            $comments = CommentDB::select_user_comments($viewed_user['username']);
+            include('view/view_user.php');
+            exit(); 
+        } else {
+            CommentDB::insert($_SESSION['user_name'], $user_name, $comment);
+            $viewed_user = membersDB::get_current_user_data($user_name);
+            $comments = CommentDB::select_user_comments($viewed_user['username']);
+            include('view/view_user.php');
+        }
+        break;  
         
     case 'logout': 
         $_SESSION = array();

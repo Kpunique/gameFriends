@@ -38,7 +38,7 @@
 
                             <td><?php echo htmlspecialchars($following['following']); ?></td>
                            
-
+<td><a href="controller.php?action=visit_profile&gamerTag=<?php echo htmlspecialchars ($following['following']); ?>">visit</a></td>
 
                         <?php endforeach; ?>
                     </tr>
