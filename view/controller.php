@@ -6,7 +6,7 @@
  require_once('../model/apex.php');
  require_once('../model/apexDB.php');
  require_once('../model/followingDB.php');
- 
+ require_once('../model/following.php');
 
  $action=filter_input(INPUT_POST,'action');
  if ($action==NULL){
@@ -191,6 +191,8 @@ switch($action)
      case 'profilePage':
        if (isset($_SESSION['user_name']))  {
         $user = usersDB::get_current_userID($_SESSION['user_name']);
+        $user_name = ($_SESSION['user_name']);
+        $memberFollowing = followingDB::getFollowing($user_name);
         include('profile.php');
         break;
       } else {
@@ -223,9 +225,12 @@ switch($action)
         
         
     case 'follow':
-        $userID = usersDB::get_current_userID($_SESSION['user_name']);
-        $follow = filter_input(INPUT_GET, 'username');
-        followingDB::addFollow($userID, $_SESSION['user_name'], $follow);
+        $follower = ($_SESSION['user_name']);
+        $following = filter_input(INPUT_GET, 'userName');
+     
+        $follow = new following ($follower,$following);
+    
+        followingDB::addFollow($follow);
         break;
         
         

@@ -12,10 +12,10 @@
     
     <body>
         <main>
-        <h1>USers on this site</h1>
+        <h1>Apex Players</h1>
         <table>
             <tr>
-            <th> user ID </th>
+     
             <th> user name</th>
             <th> gamer tag</th>
             <th> kills </th>
@@ -25,11 +25,11 @@
             
             <tr>
                 
-                <td><?php echo htmlspecialchars($apex->getUserID()); ?></td>
+            
                 <td> <?php echo htmlspecialchars ($apex->getUserName()); ?> </td>
                 <td> <?php echo htmlspecialchars ($apex->getGamerTag()); ?> </td>
                 <td><?php echo htmlspecialchars($apex->getKills()); ?></td>
-            <td><a href="controller.php?action=follow&username=<?php echo htmlspecialchars ($apex->getUserName()); ?>">visit</a></td>
+            <td><a href="controller.php?action=follow&userName=<?php echo htmlspecialchars ($apex->getUserName()); ?>">visit</a></td>
             <?php  endforeach;?>
                  </tr>
             

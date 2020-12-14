@@ -12,7 +12,7 @@
  * @author kpuni
  */
 class following {
-   public function following($followID, $follower, $following){
+   public function following( $follower, $following, $followID = -1){
        $this->followID = $followID;
        $this->follower = $follower;
        $this->following = $following;

@@ -3,15 +3,17 @@
 require_once('database.php');
 class followingDB {
     
-    public static function addFollow($followID, $follower, $following) {
+    public static function addFollow( $follow) {
         $db = Database::getDB();
-
+        $follower = $follow->getFollower();
+        $following = $follow->getFollowing();
+        
         $query = 'INSERT INTO following
-                 (followID, follower, following)
+                 ( follower, following)
               VALUES
-                 (:followID, :follower, :following)';
+                 ( :follower, :following)';
         $statement = $db->prepare($query);
-        $statement->bindValue(':followID', $followID);
+
         $statement->bindValue(':follower', $follower);
         $statement->bindValue(':following', $following);
         $statement->execute();
@@ -30,17 +32,17 @@ class followingDB {
     }
     
     
-     public static function select_all()
-    {
-      $db = Database::getDB();
-      
-      $query = 'SELECT followUserName FROM following';
-      $statement = $db->prepare($query);
-      $statement->execute();
+   public static function getFollowing($user_name) {
+        $db = Database::getDB();
+
+        $query = 'SELECT following FROM following '
+                . 'WHERE follower = :userName';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':userName', $user_name);
+        $statement->execute();
       $results =  $statement->fetchAll();
-    
       
-      return self::arrayToFollowing($results);
+      return $results;
     }
 
 }

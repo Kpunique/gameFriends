@@ -114,6 +114,8 @@ class usersDB {
         return $userData;
     }
     
+    
+    
      public static function get_current_gamerTag($user_name) {
         $db = Database::getDB();
 

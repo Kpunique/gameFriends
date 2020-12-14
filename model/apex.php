@@ -12,6 +12,7 @@
  * @author kpuni
  */
 class apex {
+    
    public function apex($userID, $userName, $gamerTag, $kills){
        $this->userID = $userID;
        $this->userName = $userName;

@@ -23,7 +23,27 @@
                 <br>
               
           
-                <h2> People You Follow</h2>
+                <h2> Following</h2>
+                <table>
+                    <tr>
+                        <th>gamerTag </th>
+                        
+
+
+                    </tr>
+
+                    <?php foreach ($memberFollowing as $following): ?>
+
+                        <tr>
+
+                            <td><?php echo htmlspecialchars($following['following']); ?></td>
+                           
+
+
+                        <?php endforeach; ?>
+                    </tr>
+
+                </table>
                
                 
         </main> 
