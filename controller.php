@@ -1,20 +1,20 @@
 <?php
   session_start();
- require_once('../model/database.php');
- require_once('../model/usersDB.php');
- require_once ('../model/member.php');
- require_once('../model/apex.php');
- require_once('../model/apexDB.php');
- require_once('../model/followingDB.php');
- require_once('../model/following.php');
+ require_once('model/database.php');
+ require_once('model/usersDB.php');
+ require_once ('model/member.php');
+ require_once('model/apex.php');
+ require_once('model/apexDB.php');
+ require_once('model/followingDB.php');
+ require_once('model/following.php');
 
- $action=filter_input(INPUT_POST,'action');
- if ($action==NULL){
+ $action = filter_input(INPUT_POST, 'action');
+if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
-    if($action == NULL){
-        $action= 'profile';
+    if ($action == NULL) {
+        $action = 'nothing';
     }
- }
+}
  if (!isset($_SESSION)) 
  {
     $action = 'login';
@@ -22,6 +22,10 @@
 
 switch($action)
 {
+    case 'nothing':
+        include ('view/login.php');
+        break;
+    
     case 'register':
 
         $firstName = filter_input(INPUT_POST, 'firstName');
@@ -73,7 +77,7 @@ switch($action)
         
         if ($errorMessageFirst != '' || $errorMessageLast !='' ||$errorMessageUser || 
          $errorMessagePassword != ''){ 
-            include ('login.php'); 
+            include ('view/login.php'); 
             
         }
         else {  
@@ -134,7 +138,7 @@ switch($action)
         
         if ($errorMessageFirst != '' || $errorMessageLast !='' ||$errorMessageUser || 
          $errorMessagePassword != ''){ 
-            include ('adminRegister.php'); 
+            include ('view/adminRegister.php'); 
             
         }
         else {  
@@ -153,12 +157,12 @@ switch($action)
             $_SESSION['user_name'] = $user_name; 
             $userID = usersDB::get_current_userID($_SESSION['user_name']);
           
-            //$memberBooks = booksDB::get_member_books($memberID);
-            include('profile.php');
+           $memberFollowing = followingDB::getFollowing($user_name);
+            include('view/profile.php');
             
         } else{
             $errorMessageLogin= 'Your Username and Password do not match a member on this site. Please Register and Join Us';
-            include('login.php');
+            include('view/login.php');
         }
         break;
         
@@ -169,13 +173,13 @@ switch($action)
          $gamer_tag = usersDB::get_current_gamerTag($user_name);
          $apex = new apex($userID, $user_name, $gamer_tag, $kills);
          apexDB::addApex($apex);
-         include ('apexConfirm.php');
+         include ('view/apexConfirm.php');
         break;
         
-         case 'viewAll':
+     case 'viewAll':
         
          $allMembers = usersDB::select_all();
-         include ('viewAll.php');
+         include ('view/viewAll.php');
           break;
     
        
@@ -185,7 +189,7 @@ switch($action)
          $kills = filter_input(INPUT_POST, 'kills');
          $gamer_tag = filter_input(INPUT_POST, 'gamer_tag');
          apexDB::update_info($user_name,$kills);
-         include ('enterApexInfo.php');
+         include ('view/enterApexInfo.php');
         break;
     
      case 'profilePage':
@@ -193,10 +197,10 @@ switch($action)
         $user = usersDB::get_current_userID($_SESSION['user_name']);
         $user_name = ($_SESSION['user_name']);
         $memberFollowing = followingDB::getFollowing($user_name);
-        include('profile.php');
+        include('view/profile.php');
         break;
       } else {
-        include('login.php');
+        include('view/login.php');
         break;
       }
       
@@ -205,17 +209,17 @@ switch($action)
         $userKills = apexDB::get_current_user_kills($user_name);
         //$apexGamers = apexDB::select_all();
         $apexGamers = apexDB::get_current_apex_users($userKills);
-         include ('viewApexPlayers.php');
+         include ('view/viewApexPlayers.php');
         break;
     
      case 'adminPage':
-        $_SESSION['user_name'] = $user_name;
+       $user_name = ($_SESSION['user_name']);
         $userID = usersDB::get_current_userID($_SESSION['user_name']);
         $adminStatus = usersDB::get_current_adminStatus($_SESSION['user_name']);
         if ($adminStatus == 1){
-            include('adminPage.php');
+            include('view/adminPage.php');
         } else {
-        include('notAdmin.php');}
+        include('view/notAdmin.php');}
         
         break;
        
@@ -230,7 +234,7 @@ switch($action)
         
         //$comments = CommentDB::select_user_comments($viewed_user['username']);
           
-        include('view_user.php');
+        include('view/view_user.php');
         break;
         
     case 'follow':
@@ -284,7 +288,7 @@ switch($action)
         
     case 'logout': 
         $_SESSION = array();
-        include('login.php');
+        include('view/login.php');
         break;
 }
 
