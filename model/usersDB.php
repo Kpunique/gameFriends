@@ -45,6 +45,25 @@ class usersDB {
         $statement->closeCursor();
     } 
     
+      public static function check_username($userName) {
+        $db = Database::getDB();
+        
+        $query = 'SELECT userName FROM users '
+                . 'where userName = :userName';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':userName', $userName);
+        $statement->execute();
+        $new_username = $statement->fetch(); 
+        $statement->closeCursor();
+        
+        if ($new_username[0] === $userName) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+    
     public static function addAdmin($member) {
         $db = Database::getDB();
 

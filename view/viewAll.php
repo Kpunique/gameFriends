@@ -12,7 +12,7 @@
     
     <body>
         <main>
-        <h1>USers on this site</h1>
+        <h1>Users on this site</h1>
         <table>
             <tr>
              <th>User ID</th>

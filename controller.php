@@ -293,6 +293,10 @@ switch($action)
         }
         break;  
         
+    case 'deleteUser':
+        
+        break;
+        
     case 'logout': 
         $_SESSION = array();
         include('view/login.php');
