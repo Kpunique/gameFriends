@@ -25,7 +25,7 @@ if (!isset($kills)) {
         <main>
           <div id="apexFriends">
 
-           <form action="controller.php" method="post">
+           <form action="../controller.php" method="post">
                 <input type="hidden" name="action" value="addApex"/>
 
                <h1>Game Friends Login Page</h1>

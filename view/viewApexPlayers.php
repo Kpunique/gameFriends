@@ -5,7 +5,7 @@
 <html>
     <head>
         <title>All Users</title>
-       <link rel="stylesheet" type="text/css" href="view/main.css">  
+       <link rel="stylesheet" type="text/css" href="main.css">  
     </head>
     
         
