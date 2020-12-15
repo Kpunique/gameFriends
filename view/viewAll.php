@@ -5,7 +5,7 @@
 <html>
     <head>
         <title>All Users</title>
-       <link rel="stylesheet" type="text/css" href="view/main.css">  
+       <link rel="stylesheet" type="text/css" href="../main.css">  
     </head>
     
         
@@ -30,7 +30,7 @@
                 <td> <?php echo htmlspecialchars ($member->getLastName()); ?> </td>
                 <td> <?php echo htmlspecialchars ($member->getUserName()); ?> </td>
                 <td><?php echo htmlspecialchars($member->getGamerTag()); ?></td>
-            
+     <td><a href="controller.php?action=deleteUser&username=<?php echo htmlspecialchars ($member->getUserName()); ?>">visit</a></td> 
             <?php  endforeach;?>
                  </tr>
             

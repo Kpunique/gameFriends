@@ -83,11 +83,11 @@ switch($action)
         else {  
         $member = new member($firstName, $lastName, $userName, $gamerTag, $hash, $isAdmin);
         usersDB::addMember($member);
-        include ('registrationConfirmation.php');
+        include ('view/registrationConfirmation.php');
         }
         break;
         
-        case 'admin register':
+         case 'adminRegister':
 
         $firstName = filter_input(INPUT_POST, 'firstName');
         $lastName = filter_input(INPUT_POST, 'lastName');
@@ -144,7 +144,7 @@ switch($action)
         else {  
         $member = new member($firstName, $lastName, $userName, $gamerTag, $hash, $isAdmin);
         usersDB::addMember($member);
-    
+        include ('view/registrationConfirmation.php');
         }
         break;
         

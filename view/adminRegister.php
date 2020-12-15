@@ -1,4 +1,5 @@
-<?php //include('navigation.php'); 
+<?php 
+include('navigation.php'); 
 if (!isset($firstName)) {
     $firstName = '';
 }
@@ -27,8 +28,8 @@ $passwordVerify = '';
     </head>
     <body>
         <main>
-           <form action="controller.php" method="post">
-                <input type="hidden" name="action" value="registration">
+           <form action="../controller.php" method="post">
+                <input type="hidden" name="action" value="adminRegister">
 
 
 
@@ -67,8 +68,8 @@ $passwordVerify = '';
                 
                 <div id ="buttons">
 
-                    <input type="submit" value="Register">
-                    <input type="hidden" name ="action" value="admin register"/><br>
+                    <input type="submit" value="Register Admin">
+                    <input type="hidden" name ="action" value="adminRegister"/><br>
 
                 </div>
                 <label>&nbsp;</label>
