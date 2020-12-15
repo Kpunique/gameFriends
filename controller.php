@@ -246,6 +246,13 @@ switch($action)
         followingDB::addFollow($follow);
         break;
     
+    case 'unfollow':
+      $follower = ($_SESSION['user_name']);
+      $following = filter_input(INPUT_GET, 'userName');
+      
+      followingDB::delete($follower,$following);
+      break;
+  
      case 'visit_profile':
     
         $comment_error = '';

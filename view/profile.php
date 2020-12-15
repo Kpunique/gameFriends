@@ -10,7 +10,7 @@
         <main>
             <div id="data">
                 <h1> Welcome Home Gamer </h1>
-                You can now <a href="enterApexInfo.php"> Update Apex Kills</a>
+                You can now <a href="view/enterApexInfo.php"> Update Apex Kills</a>
   
               <div id="buttons">
 
@@ -39,7 +39,7 @@
                             <td><?php echo htmlspecialchars($following['following']); ?></td>
                            
 <td><a href="controller.php?action=visit_profile&gamerTag=<?php echo htmlspecialchars ($following['following']); ?>">visit</a></td>
-
+<td><a href="controller.php?action=unfollow&gamerTag=<?php echo htmlspecialchars ($following['following']); ?>">Unfollow</a></td>
                         <?php endforeach; ?>
                     </tr>
 
