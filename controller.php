@@ -250,7 +250,9 @@ switch($action)
       $follower = ($_SESSION['user_name']);
       $following = filter_input(INPUT_GET, 'userName');
       
-      followingDB::delete($follower,$following);
+         $user_name = ($_SESSION['user_name']);
+        $memberFollowing = followingDB::getFollowing($user_name);
+        include('view/profile.php');
       break;
   
      case 'visit_profile':
@@ -297,6 +299,8 @@ switch($action)
         $user_name = filter_input(INPUT_GET, 'username');
         $delete_user_ID = usersDB::get_current_userID($user_name);
         usersDB::delete($delete_user_ID);
+         $allMembers = usersDB::select_all();
+         include ('view/viewAll.php');
         break;
         
     case 'logout': 

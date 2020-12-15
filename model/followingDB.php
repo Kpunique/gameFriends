@@ -46,10 +46,10 @@ class followingDB {
     }
     
 
-    public static function delete($follower, $following) {
+    public static function unfollow($follower, $following) {
         $db = Database::getDB();
         
-        $query = 'DELETE FROM following followID, follower, following '
+        $query = 'DELETE FROM following '
                 . 'where follower = :follower'
                 . '&& following = :following';
         $statement = $db->prepare($query);
