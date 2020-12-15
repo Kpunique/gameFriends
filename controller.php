@@ -294,7 +294,9 @@ switch($action)
         break;  
         
     case 'deleteUser':
-        
+        $user_name = filter_input(INPUT_GET, 'username');
+        $delete_user_ID = usersDB::get_current_userID($user_name);
+        usersDB::delete($delete_user_ID);
         break;
         
     case 'logout': 

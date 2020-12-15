@@ -180,4 +180,16 @@ class usersDB {
         
         return $data;
     }
+    
+    public static function delete($delete_user_ID) {
+        $db = Database::getDB();
+        
+        $query = 'DELETE FROM users '
+                . 'where userID = :userID';
+        $statement = $db->prepare($query);
+         $statement->bindValue(':userID', $delete_user_ID);
+        $statement->execute();
+        $statement->closeCursor();
+          
+        }
 }
