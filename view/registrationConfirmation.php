@@ -7,7 +7,7 @@
 
     </head>
     <main>
-            <body>
+           
            <div id="data">
                 <h1> Registration Completed </h1>
 
@@ -23,6 +23,7 @@
                 <label> Email Address:</label>
                 
                 You can now <a href="controller.php"> login </a>
+           </div>
                 </main> 
     </body>
 

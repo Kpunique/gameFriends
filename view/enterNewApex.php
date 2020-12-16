@@ -1,5 +1,6 @@
-<?php include('navigation.php'); ?>  
+  <?php include('navigation.php'); ?>
 <?php
+
 if (!isset($user_name)) {
     $user_name = '';
 }
@@ -51,8 +52,8 @@ if (!isset($kills)) {
                
                 <div id="buttons">
 
-                    <input type="submit" value="update">
-                    <input type="hidden" name="action" value="updateApex"/><br>
+                    <input type="submit" value="add">
+                    <input type="hidden" name="action" value="addApex"/><br>
                      <label>&nbsp;</label>
                      
                 </div>

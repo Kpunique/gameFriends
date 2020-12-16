@@ -1,3 +1,4 @@
+<?php include('navigation.php'); ?>
 <?php 
 include('navigation.php'); 
 if (!isset($firstName)) {

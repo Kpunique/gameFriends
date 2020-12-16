@@ -23,7 +23,7 @@
           
                 
                 You can now <a href="../controller.php"> login </a>
-                </main> 
+     </main> 
     </body>
 
 </html>

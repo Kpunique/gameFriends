@@ -190,7 +190,8 @@ switch($action)
          $kills = filter_input(INPUT_POST, 'kills');
          $gamer_tag = filter_input(INPUT_POST, 'gamer_tag');
          apexDB::update_info($user_name,$kills);
-         include ('view/enterApexInfo.php');
+         $memberFollowing = followingDB::getFollowing($user_name);
+         include('view/profile.php');
         break;
     
      case 'profilePage':
@@ -239,12 +240,17 @@ switch($action)
         break;
         
     case 'follow':
+         case 'follow':
         $follower = ($_SESSION['user_name']);
         $following = filter_input(INPUT_GET, 'userName');
      
         $follow = new following ($follower,$following);
     
         followingDB::addFollow($follow);
+        
+        
+        $memberFollowing = followingDB::getFollowing($follower);
+        include('view/profile.php');
         break;
     
     case 'unfollow':

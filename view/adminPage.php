@@ -19,7 +19,7 @@ include('navigation.php'); ?>
             </form>
                 </div>
                 
-               
+            </div>  
                 
         </main> 
     </body>
