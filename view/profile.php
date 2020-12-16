@@ -15,7 +15,7 @@
   
               <div id="buttons">
 
-                    <form action="controller.php" method="POST" >
+            <form action="controller.php" method="POST" >
                 <input type="hidden" name="action" value="find_friends">
                 <input type="submit" value="Find Apex Friends">
             </form>
@@ -29,7 +29,7 @@
                     <tr>
                         <th>gamerTag </th>
                         
-
+                   
 
                     </tr>
 
@@ -46,8 +46,8 @@
 
                 </table>
                
-                
-        </main> 
+            </div>     
+        </main>
     </body>
 
 </html>

@@ -78,7 +78,7 @@ class apexDB {
     }
     
     
-    public static function get_current_apex_users($userKills) {
+     public static function get_current_apex_users($userKills) {
         $db = Database::getDB();
 
         $query = 'SELECT * FROM apex '
@@ -90,6 +90,21 @@ class apexDB {
     
       
       return self::arrayToApex($results);
+    }
+    
+     public static function get_current_user_data($userName) {
+        $db = Database::getDB();
+
+        $query = 'SELECT firstName, lastName, gamerTag FROM users '
+                . 'WHERE userName = :userName';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':userName', $userName);
+        $statement->execute();
+        $data = $statement->fetch(); 
+        $statement->closeCursor();
+        
+        
+        return $data;
     }
 
 }

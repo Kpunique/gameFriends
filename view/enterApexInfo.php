@@ -24,15 +24,15 @@ if (!isset($kills)) {
     <body>
         <main>
           
-
+ <div id="apexFriends">
            <form action="../controller.php" method="post">
                 <input type="hidden" name="action" value="addApex"/>
 
              
 
-                <div id="apexFriends">
+               
                  <h1>Update Kills</h1>
-                 <a href="controller.php?action=addApex">visit</a>
+                
                   <label> User Name:</label>
                      <span> <?php echo htmlspecialchars($user_name); ?> </span><br>
                      
@@ -59,10 +59,10 @@ if (!isset($kills)) {
 
                    
               
-                
+           </form>
                
                 </div>
-               </form>
+            
                 <br>
             
 

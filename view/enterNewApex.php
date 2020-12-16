@@ -33,7 +33,7 @@ if (!isset($kills)) {
 
                 <div id="apexFriends">
                  <h1>Update Kills</h1>
-                 <a href="controller.php?action=addApex">visit</a>
+                 
                   <label> User Name:</label>
                      <span> <?php echo htmlspecialchars($user_name); ?> </span><br>
                      

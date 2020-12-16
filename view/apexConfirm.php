@@ -7,7 +7,7 @@
 
     </head>
     <main>
-            <body>
+          
            <div id="data">
                 <h1> You are officially certified </h1>
 
@@ -20,9 +20,9 @@
                 <label> Kills:</label>
                 <span> <?php echo htmlspecialchars($apex->getKills()); ?> </span><br>
 
-          
+           </div>
                 
-                You can now <a href="../controller.php"> login </a>
+               
      </main> 
     </body>
 

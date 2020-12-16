@@ -198,6 +198,7 @@ switch($action)
        if (isset($_SESSION['user_name']))  {
         $user = usersDB::get_current_userID($_SESSION['user_name']);
         $user_name = ($_SESSION['user_name']);
+        $userKills = apexDB::get_current_user_kills($user_name);
         $memberFollowing = followingDB::getFollowing($user_name);
         include('view/profile.php');
         break;
@@ -206,11 +207,11 @@ switch($action)
         break;
       }
       
-     case 'find_friends':
+    case 'find_friends':
        $user_name = ($_SESSION['user_name']);
-        $userKills = apexDB::get_current_user_kills($user_name);
-        //$apexGamers = apexDB::select_all();
-        $apexGamers = apexDB::get_current_apex_users($userKills);
+       $userKills = apexDB::get_current_user_kills($user_name);
+        $apexGamers = apexDB::select_all();
+       // $apexGamers = apexDB::get_current_apex_users($userKills);
          include ('view/viewApexPlayers.php');
         break;
     
@@ -232,15 +233,18 @@ switch($action)
         $comment_error = '';
         $gamerTag = filter_input(INPUT_GET, 'gamerTag');
         
+        
         $viewed_user = usersDB::get_current_user_data($gamerTag);
+        $getKills = apexDB::get_current_user_kills($viewed_user['userName']);
+        $kills=$getKills;
         
         //$comments = CommentDB::select_user_comments($viewed_user['username']);
           
         include('view/view_user.php');
         break;
         
-    case 'follow':
-         case 'follow':
+   
+      case 'follow':
         $follower = ($_SESSION['user_name']);
         $following = filter_input(INPUT_GET, 'userName');
      
@@ -257,6 +261,7 @@ switch($action)
       $follower = ($_SESSION['user_name']);
       $following = filter_input(INPUT_GET, 'userName');
       followingDB::unfollow($follower, $following);
+      
          $user_name = ($_SESSION['user_name']);
         $memberFollowing = followingDB::getFollowing($user_name);
         include('view/profile.php');
@@ -266,37 +271,35 @@ switch($action)
     
         $comment_error = '';
         $user_name = filter_input(INPUT_GET, 'username');
+        $gamerTag = usersDB::get_current_gamerTag($user_name);
+        $viewed_user = usersDB::get_current_user_data_($user_name);
         
-        $viewed_user = usersDB::get_current_user_data($user_name);
-        
-        $comments = CommentDB::select_user_comments($viewed_user['username']);
+        //$comments = CommentDB::select_user_comments($viewed_user['username']);
           
         include('view/view_user.php');
         break;
         
       case 'comment':
-        $IllegalCharacters = '/[<>:"\'\/\\\\|?*]/';
+   
         
         $comment = filter_input(INPUT_POST, 'user_comment');
         $user_name = filter_input(INPUT_POST, 'viewed_user');
         $comment_error = '';
         
-        if(preg_match($IllegalCharacters, $comment) === 1){
-            $comment_error = 'Comment contains illegal special characters' ;
-        }
+        
         if(strlen($comment) > 300 || strlen($comment) <= 0) {
-            $comment_error = 'Your comment must be between 1 and 300 characters';
+            $comment_error = 'Your comment must be between 1 and 150 characters';
         }
         
         // if an error message exists, go to the index page
         if ($comment_error !== '') {
-            $viewed_user = membersDB::get_current_user_data($user_name);
+            $viewed_user = usersDB::get_current_user_data_($user_name);
             $comments = CommentDB::select_user_comments($viewed_user['username']);
             include('view/view_user.php');
             exit(); 
         } else {
             CommentDB::insert($_SESSION['user_name'], $user_name, $comment);
-            $viewed_user = membersDB::get_current_user_data($user_name);
+            $viewed_user = usersDB::get_current_user_data_($user_name);
             $comments = CommentDB::select_user_comments($viewed_user['username']);
             include('view/view_user.php');
         }

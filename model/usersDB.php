@@ -181,6 +181,20 @@ class usersDB {
         return $data;
     }
     
+    public static function get_current_user_data_($userName) {
+        $db = Database::getDB();
+
+        $query = 'SELECT firstName, lastName, gamerTag FROM users '
+                . 'WHERE userName = :userName';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':userName', $userName);
+        $statement->execute();
+        $data = $statement->fetch(); 
+        $statement->closeCursor();
+        
+        
+        return $data;
+    }
     public static function delete($delete_user_ID) {
         $db = Database::getDB();
         
