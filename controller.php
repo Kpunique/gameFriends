@@ -168,9 +168,10 @@ switch($action)
         
     case 'addApex':
          $user_name = ($_SESSION['user_name']);
-         $userID = usersDB::get_current_userID($user_name);
+         $userID = usersDB::get_current_userID($_SESSION['user_name']);
          $kills = filter_input(INPUT_POST, 'kills');
-         $gamer_tag = usersDB::get_current_gamerTag($user_name);
+         $gamer_tag = usersDB::get_current_gamerTag($_SESSION['user_name']);
+        
          $apex = new apex($userID, $user_name, $gamer_tag, $kills);
          apexDB::addApex($apex);
          include ('view/apexConfirm.php');
@@ -189,7 +190,7 @@ switch($action)
          $kills = filter_input(INPUT_POST, 'kills');
          $gamer_tag = filter_input(INPUT_POST, 'gamer_tag');
          apexDB::update_info($user_name,$kills);
-         include ('view/enterApexInfo.php');
+         include ('view/profile.php');
         break;
     
      case 'profilePage':
@@ -249,7 +250,7 @@ switch($action)
     case 'unfollow':
       $follower = ($_SESSION['user_name']);
       $following = filter_input(INPUT_GET, 'userName');
-      
+      followingDB::unfollow($follower, $following);
          $user_name = ($_SESSION['user_name']);
         $memberFollowing = followingDB::getFollowing($user_name);
         include('view/profile.php');

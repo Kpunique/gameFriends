@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="main.css">
-        <title>Book Lovers Club</title>
+        <title>Registration Complete</title>
 
     </head>
     <main>
