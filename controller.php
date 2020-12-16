@@ -198,7 +198,8 @@ switch($action)
        if (isset($_SESSION['user_name']))  {
         $user = usersDB::get_current_userID($_SESSION['user_name']);
         $user_name = ($_SESSION['user_name']);
-        $userKills = apexDB::get_current_user_kills($user_name);
+        $gamerTag = usersDB::get_current_gamerTag($user_name);
+        $kills = apexDB::get_current_user_kills($gamerTag);
         $memberFollowing = followingDB::getFollowing($user_name);
         include('view/profile.php');
         break;

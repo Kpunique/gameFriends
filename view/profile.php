@@ -10,6 +10,7 @@
         <main>
             <div id="data">
                 <h1> Welcome Home Gamer </h1>
+                <h2>  Kills: <?php echo htmlspecialchars($kills) ?> </h2>
                 If you haven't already <a href="view/enterNewApex.php"> ADD MY APEX KILLS</a><br>
                 You can now <a href="view/enterApexInfo.php"> UPDATE APEX KILLS</a>
   
