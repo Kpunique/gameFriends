@@ -62,19 +62,20 @@ class apexDB {
       return self::arrayToApex($results);
     }
     
-     public static function get_current_user_kills($user_name) {
+     public static function get_current_user_kills($gamerTag) {
         $db = Database::getDB();
 
         $query = 'SELECT kills FROM apex '
-                . 'WHERE username = :username';
+                . 'WHERE gamerTag = :gamerTag';
         $statement = $db->prepare($query);
-        $statement->bindValue(':username', $user_name);
-        $statement->execute();
+        $statement->bindValue(':gamerTag', $gamerTag);
+       $statement->execute();
         $data = $statement->fetch(); 
         $statement->closeCursor();
+        $userData = $data[0];
         
         
-        return $data;
+        return $userData;
     }
     
     
@@ -82,7 +83,7 @@ class apexDB {
         $db = Database::getDB();
 
         $query = 'SELECT * FROM apex '
-                . 'WHERE kills <= :userKills + 100';
+                . 'WHERE kills <= :userKills + 50';
         $statement = $db->prepare($query);
         $statement->bindValue(':userKills', $userKills);
         $statement->execute();

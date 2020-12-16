@@ -20,16 +20,7 @@ class followingDB {
         $statement->closeCursor();
     }
     
-    private static function arrayToFollowing($results){
-        $following = [];
-        foreach ($results as $temp){    
-        $followUserName = $temp['followUserName'];
-        $reader = new following( "", "", $followUserName);
-        $following [$reader->getUserName()] = $reader;
-    }
-    return following;
-        
-    }
+  
     
     
    public static function getFollowing($user_name) {
