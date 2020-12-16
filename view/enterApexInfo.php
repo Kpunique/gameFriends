@@ -1,5 +1,4 @@
   
-  
 <?php
 if (!isset($user_name)) {
     $user_name = '';
@@ -24,21 +23,20 @@ if (!isset($kills)) {
     </head>
     <body>
         <main>
-          <div id="apexFriends">
+          
 
            <form action="../controller.php" method="post">
                 <input type="hidden" name="action" value="addApex"/>
 
-               <h1>Game Friends Login Page</h1>
+             
 
-                <div id="data">
-
+                <div id="apexFriends">
+                 <h1>Update Kills</h1>
                   <label> User Name:</label>
                      <span> <?php echo htmlspecialchars($user_name); ?> </span><br>
                      
                     <label>Gamer Tag:</label>
-                    <input type="text" name="gamerTag" 
-                           value="<?php echo htmlspecialchars($gamerTag); ?>"> &nbsp; 
+                    <span> <?php echo htmlspecialchars($user_name); ?> </span><br> 
                    
                     <br>
 
@@ -47,21 +45,30 @@ if (!isset($kills)) {
                            value="<?php echo htmlspecialchars($kills); ?>"> <label>&nbsp;</label>
                     <br>
 
-                </div>
+               
 
+               
                 <div id="buttons">
 
                     <input type="submit" value="add">
                     <input type="hidden" name="action" value="addApex"/><br>
+                     <label>&nbsp;</label>
+                     
+                   
 
+                    <input type="submit" value="update">
+                    <input type="hidden" name="action" value="updateApex"/><br>
+                     <label>&nbsp;</label>
                 </div>
-                <label>&nbsp;</label>
+                
+               
+                </div>
+               </form>
                 <br>
-            </form>
+            
 
-          </div>
+          
         </main>
     </body>
 </html>
-
 

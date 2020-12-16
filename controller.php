@@ -190,7 +190,7 @@ switch($action)
          $kills = filter_input(INPUT_POST, 'kills');
          $gamer_tag = filter_input(INPUT_POST, 'gamer_tag');
          apexDB::update_info($user_name,$kills);
-         include ('view/profile.php');
+         include ('view/enterApexInfo.php');
         break;
     
      case 'profilePage':
