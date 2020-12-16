@@ -100,12 +100,24 @@ class apexDB {
                 . 'WHERE userName = :userName';
         $statement = $db->prepare($query);
         $statement->bindValue(':userName', $userName);
-        $statement->execute();
+      $statement->execute();
         $data = $statement->fetch(); 
         $statement->closeCursor();
+        $userData = $data[0];
         
         
-        return $data;
+        return $userData;
     }
+    public static function deleteUser($gamerTag) {
+        $db = Database::getDB();
+        
+        $query = 'DELETE FROM apex '
+                . 'where gamerTag = :gamerTag';
+        $statement = $db->prepare($query);
+         $statement->bindValue(':gamerTag', $gamerTag);
+        $statement->execute();
+        $statement->closeCursor();
+          
+        }
 
 }

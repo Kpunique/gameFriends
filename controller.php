@@ -309,7 +309,10 @@ switch($action)
     case 'deleteUser':
         $user_name = filter_input(INPUT_GET, 'username');
         $delete_user_ID = usersDB::get_current_userID($user_name);
+        $gamerTag = usersDB::get_current_gamerTag($user_name);
         usersDB::delete($delete_user_ID);
+        apexDB::deleteUser($gamerTag);
+        followingDB::deleteUser($gamerTag);
          $allMembers = usersDB::select_all();
          include ('view/viewAll.php');
         break;

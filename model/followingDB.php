@@ -51,5 +51,18 @@ class followingDB {
           
         }
         
+         public static function deleteUser($gamerTag) {
+        $db = Database::getDB();
+        
+        $query = 'DELETE FROM following '
+                . 'where follower = :gamerTag'
+                . 'OR following = :gamerTag';
+        $statement = $db->prepare($query);
+         $statement->bindValue(':gamerTag', $gamerTag);
+        $statement->execute();
+        $statement->closeCursor();
+          
+        }
+        
     
 }
